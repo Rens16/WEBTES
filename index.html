@@ -1,0 +1,67 @@
+html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novel Slide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
+        .container { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+        .novel { width: 80%; max-width: 600px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); overflow: hidden; }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; }
+        .slide { min-width: 100%; box-sizing: border-box; padding: 20px; }
+        button { margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; background: #007BFF; color: white; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="novel">
+            <div class="slides" id="slides">
+                <div class="slide">
+                    <h2>Bab 1: Awal Pertemuan</h2>
+                    <p>Di suatu senja yang hangat, aku bertemu dengannya untuk pertama kali...</p>
+                </div>
+                <div class="slide">
+                    <h2>Bab 2: Sebuah Rahasia</h2>
+                    <p>Ada sesuatu yang dia sembunyikan, dan aku mulai penasaran...</p>
+                </div>
+                <div class="slide">
+                    <h2>Bab 3: Keputusan Besar</h2>
+                    <p>Dalam hidup, terkadang kita harus memilih jalan yang sulit...</p>
+                </div>
+            </div>
+            <button onclick="prevSlide()">Sebelumnya</button>
+            <button onclick="nextSlide()">Selanjutnya</button>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.getElementById("slides");
+        const totalSlides = document.querySelectorAll(".slide").length;
+        
+        function nextSlide() {
+            if (currentIndex < totalSlides - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            updateSlide();
+        }
+        
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = totalSlides - 1;
+            }
+            updateSlide();
+        }
+        
+        function updateSlide() {
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>
